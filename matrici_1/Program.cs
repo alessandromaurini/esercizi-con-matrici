@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace matrici_1
+namespace matrici_sybau
 {
     internal class Program
     {
@@ -20,33 +20,13 @@ namespace matrici_1
                 switch (scelta)
                 {
                     case "1":
-                        Console.Write("Numero righe: ");
-                        int righe = int.Parse(Console.ReadLine());
-
-                        Console.Write("Numero colonne: ");
-                        int colonne = int.Parse(Console.ReadLine());
-
-                        matrice = new int[righe, colonne];
-
-                        for (int i = 0; i < righe; i++)
-                        {
-                            for (int j = 0; j < colonne; j++)
-                            {
-                                Console.Write($"Inserisci valore [{i},{j}]: ");
-                                matrice[i, j] = int.Parse(Console.ReadLine());
-                            }
-                        }
+                        matrice = matrice1();
                         break;
 
                     case "2":
-                        for (int i = 0; i < matrice.GetLength(0); i++)
-                        {
-                            for (int j = 0; j < matrice.GetLength(1); j++)
-                            {
-                                Console.Write(matrice[i, j] + "\t");
-                            }
-                            Console.WriteLine();
-                        }
+                        if (matrice != null)
+                            matrice2(matrice);
+                        else Console.Write("Manca la matrice!");
                         break;
 
                     case "3":
@@ -66,6 +46,37 @@ namespace matrici_1
             Console.WriteLine("1 - Creazione matrice");
             Console.WriteLine("2 - Stampa matrice");
             Console.WriteLine("0 - ESCI");
+        }
+        static int[,] matrice1()
+        {
+            Console.Write("Numero righe: ");
+            int r = int.Parse(Console.ReadLine());
+
+            Console.Write("Numero colonne: ");
+            int c = int.Parse(Console.ReadLine());
+
+            int [,]m = new int[r, c];
+
+            for (int i = 0; i < r; i++)
+            {
+                for (int j = 0; j < c; j++)
+                {
+                    Console.Write($"Inserisci valore [{i},{j}]: ");
+                    m[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+            return m;
+        }
+        static void matrice2(int[,] m)
+        {
+            for (int i = 0; i < m.GetLength(0); i++)
+            {
+                for (int j = 0; j < m.GetLength(1); j++)
+                {
+                    Console.Write(m[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
